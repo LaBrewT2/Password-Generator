@@ -29,7 +29,7 @@ function getRandomSymbol(){
   return symbol[Math.floor(Math.random()*symbol.length)];
 }
 
-// Functions
+// Store Functions
 const randomFunc = {
   upper : getRandomUpperCase,
   lower : getRandomLowerCase,
@@ -38,8 +38,8 @@ const randomFunc = {
   };
   
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword){
-  
+generateBtn.addEventListener("click", writePassword)
+
     const length = +lengthEl.value;
     const hasUpper = upperEl.checked;
     const hasLower = lowerEl.checked;
@@ -47,6 +47,31 @@ generateBtn.addEventListener("click", writePassword){
     const hasSymbol = symbolEl.checked;
 
 answerEl.innerText = generatePassword(hasUpper, hasLower, hasNumber, hasSymbol, length);
-};
+;
+
+//Generate Password Function
+function generatePassword(upper, lower, number, symbol, length){
+  let generatedPassword = "";
+
+  const typesCount = upper + lower + number + symbol;
+
+  //console.log(typesCount);
+
+  const typesArr = [{upper}, {lower}, {number}, {symbol}].filter(item => Object.values(item)[0]);
+
+  if(typesCount === 0) {
+      return '';
+  }
+
+  for(let i=0; i<length; i+=typesCount) {
+      typesArr.forEach(type => {
+          const funcName = Object.keys(type)[0];
+          generatedPassword += randomFunc[funcName]();
+      });
+  }
+
+  const finalPassword = generatedPassword.slice(0, length);
 
 
+  return finalPassword;
+}
