@@ -16,14 +16,29 @@ function getRandomUpperCase(){
 //Random Lowercase
 function getRandomLowerCase(){
   return String.fromCharCode(Math.floor(Math.random()*26)+97);
+}
+
 //Random Numbers
 function getRandomNumber(){
   return String.fromCharCode(Math.floor(Math.random()*10)+48);
+}
+
 // Random Symbols
-function getRandomSymbol({
+function getRandomSymbol(){
   var symbol = "!@#$%^&*(){}[]=<>/,.~?";
   return symbol[Math.floor(Math.random()*symbol.length)];
-})
+}
 
+// Functions
+const randomFunc = {
+  upper : getRandomUpperCase,
+  lower : getRandomLowerCase,
+  number : getRandomNumber,
+  symbol : getRandomSymbol,
+  };
+  
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
