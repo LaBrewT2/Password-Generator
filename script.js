@@ -38,7 +38,15 @@ const randomFunc = {
   };
   
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword){
+  
+    const length = +lengthEl.value;
+    const hasUpper = upperEl.checked;
+    const hasLower = lowerEl.checked;
+    const hasNumber = numberEl.checked;
+    const hasSymbol = symbolEl.checked;
 
+answerEl.innerText = generatePassword(hasUpper, hasLower, hasNumber, hasSymbol, length);
+};
 
 
